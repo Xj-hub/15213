@@ -1,0 +1,8 @@
+L 10,1 miss                     tag 0 null
+M 20,1 miss hit  
+L 22,1 hit 
+S 18,1 hit                      tag 0 null
+L 110,1 miss                    tag 1 tag 0
+L 210,1 miss eviction           tag 2 tag 1
+M 12,1 miss eviction hit        tag 0 tag 2
+hits:4 misses:5 evictions:2

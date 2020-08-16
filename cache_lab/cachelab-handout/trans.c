@@ -22,6 +22,35 @@ int is_transpose(int M, int N, int A[N][M], int B[M][N]);
 char transpose_submit_desc[] = "Transpose submission";
 void transpose_submit(int M, int N, int A[N][M], int B[M][N])
 {
+    // using 8*8 block
+
+    for(int bi = 0; bi<N; bi+=8){
+        for(int bj = 0; bj < M; bj+=8){
+            for(int i = bi; i< bi +8; ++i){
+                
+			
+				int val0 = A[i][bj];
+				int val1 = A[i][bj + 1];
+				int val2 = A[i][bj + 2];
+				int val3 = A[i][bj + 3];
+				int val4 = A[i][bj + 4];
+				int val5 = A[i][bj + 5];
+				int val6 = A[i][bj + 6];
+				int val7 = A[i][bj + 7];
+				B[bj][i] = val0;
+				B[bj + 1][i] = val1;
+				B[bj + 2][i] = val2;
+				B[bj + 3][i] = val3;
+				B[bj + 4][i] = val4;
+				B[bj + 5][i] = val5;
+				B[bj + 6][i] = val6;
+				B[bj + 7][i] = val7;
+			}
+            
+        }
+
+    }
+    return;
 }
 
 /* 
@@ -58,9 +87,7 @@ void registerFunctions()
     /* Register your solution function */
     registerTransFunction(transpose_submit, transpose_submit_desc); 
 
-    /* Register any additional transpose functions */
-    registerTransFunction(trans, trans_desc); 
-
+    
 }
 
 /* 

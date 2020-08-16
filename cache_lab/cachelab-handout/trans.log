@@ -1,0 +1,17 @@
+tag::::::0 timestamp::::::0 valid::::::0 tag::::::0 timestamp::::::0 valid::::::0 
+L 10,1 miss
+tag::::::0 timestamp::::::0 valid::::::0 tag::::::0 timestamp::::::0 valid::::::0 
+tag::::::0 timestamp::::::1 valid::::::1 tag::::::0 timestamp::::::0 valid::::::0 
+M 20,1 miss hit
+tag::::::0 timestamp::::::1 valid::::::1 tag::::::0 timestamp::::::0 valid::::::0 
+L 22,1 hit
+tag::::::0 timestamp::::::4 valid::::::1 tag::::::0 timestamp::::::0 valid::::::0 
+S 18,1 hit
+tag::::::0 timestamp::::::1 valid::::::1 tag::::::0 timestamp::::::0 valid::::::0 
+L 110,1 miss
+tag::::::0 timestamp::::::2 valid::::::1 tag::::::1 timestamp::::::1 valid::::::1 
+L 210,1 miss eviction
+tag::::::2 timestamp::::::1 valid::::::1 tag::::::1 timestamp::::::2 valid::::::1 
+tag::::::2 timestamp::::::2 valid::::::1 tag::::::0 timestamp::::::1 valid::::::1 
+M 12,1 miss eviction hit
+hits:4 misses:5 evictions:2

@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
 
     printf("Welcome to my fiendish little bomb. You have 6 phases with\n");
     printf("which to blow yourself up. Have a nice day!\n");
-
+// "Border relations with Canada have never been better."
     /* Hmm...  Six phases must be more secure than one phase! */
     input = read_line();             /* Get input                   */
     phase_1(input);                  /* Run the phase               */
