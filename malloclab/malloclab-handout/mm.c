@@ -26,9 +26,9 @@ team_t team = {
     /* Team name */
     "ateam",
     /* First member's full name */
-    "Harry Bovik",
+    "Xiao Jiang",
     /* First member's email address */
-    "bovik@cs.cmu.edu",
+    "xjiang2@andrew.cmu.edu",
     /* Second member's full name (leave blank if none) */
     "",
     /* Second member's email address (leave blank if none) */
@@ -49,6 +49,12 @@ team_t team = {
  */
 int mm_init(void)
 {
+    mem_sbrk(16 * 100);
+    size_t heap_size = mem_heapsize();
+    void * low = mem_heap_lo();
+    void * high = mem_heap_hi();
+    printf("size is: %zd   low pointer is: %p   high pointer is %p\n", heap_size, low, high);
+    
     return 0;
 }
 
