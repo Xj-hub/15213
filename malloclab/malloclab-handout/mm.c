@@ -77,6 +77,16 @@ static void place(void *bp, size_t asize);
 static void *find_fit(size_t asize);
 static void *coalesce(void *bp);
 
+typedef struct block{
+    // void * header;
+    // void * footer;
+    void * bp;
+    struct block * next;
+    struct block * prev;
+}Block;
+
+static Block * root;
+
 /* 
  * mm_init - Initialize the memory manager 
  */
@@ -90,7 +100,7 @@ int mm_init(void)
     PUT(heap_listp + (2*WSIZE), PACK(DSIZE, 1)); /* Prologue footer */ 
     PUT(heap_listp + (3*WSIZE), PACK(0, 1));     /* Epilogue header */
     heap_listp += (2*WSIZE);     
-       
+    // root->bp = heap_listp;
 
 #ifdef NEXT_FIT
     rover = heap_listp;
