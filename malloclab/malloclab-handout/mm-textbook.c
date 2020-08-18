@@ -33,14 +33,14 @@
 #define MAX(x, y) ((x) > (y)? (x) : (y))  
 
 /* Pack a size and allocated bit into a word */
-#define PACK(size, alloc)  ((size) | (alloc)) 
+#define PACK(size, alloc)  ((size) | (alloc))   
 
 /* Read and write a word at address p */
 #define GET(p)       (*(unsigned int *)(p))            
 #define PUT(p, val)  (*(unsigned int *)(p) = (val))    
 
 /* Read the size and allocated fields from address p */
-#define GET_SIZE(p)  (GET(p) & ~0x7)                   
+#define GET_SIZE(p)  (GET(p) & ~0x7)        //  0000...0000111  ~0x7 =   111111...1111000   *p : 001260(00) see line 4  size: 00123000 a:0   
 #define GET_ALLOC(p) (GET(p) & 0x1)                    
 
 /* Given block ptr bp, compute address of its header and footer */
@@ -48,7 +48,7 @@
 #define FTRP(bp)       ((char *)(bp) + GET_SIZE(HDRP(bp)) - DSIZE) 
 
 /* Given block ptr bp, compute address of next and previous blocks */
-#define NEXT_BLKP(bp)  ((char *)(bp) + GET_SIZE(((char *)(bp) - WSIZE))) 
+#define NEXT_BLKP(bp)  ((char *)(bp) + GET_SIZE(HDRP(bp))) 
 #define PREV_BLKP(bp)  ((char *)(bp) - GET_SIZE(((char *)(bp) - DSIZE))) 
 
 /* Global variables */
@@ -75,7 +75,8 @@ int mm_init(void)
     PUT(heap_listp + (1*WSIZE), PACK(DSIZE, 1)); /* Prologue header */ 
     PUT(heap_listp + (2*WSIZE), PACK(DSIZE, 1)); /* Prologue footer */ 
     PUT(heap_listp + (3*WSIZE), PACK(0, 1));     /* Epilogue header */
-    heap_listp += (2*WSIZE);                     
+    heap_listp += (2*WSIZE);     
+       
 
 #ifdef NEXT_FIT
     rover = heap_listp;
@@ -105,7 +106,7 @@ void *malloc(size_t size)
 
     /* Adjust block size to include overhead and alignment reqs. */
     if (size <= DSIZE)                                          
-        asize = 2*DSIZE;                                        
+        asize = DSIZE + DSIZE;                                        
     else
         asize = DSIZE * ((size + (DSIZE) + (DSIZE-1)) / DSIZE); 
 
